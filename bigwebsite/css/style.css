@@ -1,0 +1,2611 @@
+/* Fonts for the welcome area, with fallbacks set where each is used */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Chewy&family=VT323&display=swap");
+
+html {
+  margin: 0;
+  min-height: 100%;
+  background-color: #dfeaf2;
+  overflow: auto;
+}
+
+body {
+  /* REQUIRED from chunk one: width, height */
+  margin: 0;
+  width: 3000px;
+  height: 3000px;
+  min-width: 3000px;
+  min-height: 3000px;
+  position: relative;
+  background-color: #dfeaf2;
+  color: #1f1b1a;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.5;
+}
+
+.page {
+  position: relative;
+  width: 3000px;
+  height: 3000px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    #dfeaf2;
+  box-sizing: border-box;
+}
+
+/* REQUIRED: div + ID + class + span + image styling */
+#welcome-zone {
+  /* REQUIRED: width */
+  width: 640px;
+  /* REQUIRED: margin */
+  margin: 80px 0 0 80px;
+  /* REQUIRED: padding */
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.welcome-zone {
+  /* REQUIRED: class */
+  box-shadow: none;
+}
+
+/* Welcome area: the scrapbook's front cover */
+
+/* KATIE logo as a tilted sticker held on by washi tape, floating gently.
+   The blend sits on the sticker (not just the image) so no white box
+   appears while it moves */
+.logo-sticker {
+  position: relative;
+  width: 340px;
+  margin: 0 0 4px 12px;
+  rotate: -4deg;
+  mix-blend-mode: multiply;
+  animation: sticker-float 6s ease-in-out infinite;
+}
+
+.washi-tape {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  z-index: 1;
+  width: 130px;
+  height: 30px;
+  transform: translateX(-50%) rotate(5deg);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(242, 110, 105, 0.55) 0 8px,
+    rgba(255, 214, 186, 0.6) 8px 16px
+  );
+  /* Torn, zigzag tape ends */
+  clip-path: polygon(0 0, 100% 0, 97% 20%, 100% 40%, 97% 60%, 100% 80%, 100% 100%, 0 100%, 3% 80%, 0 60%, 3% 40%, 0 20%);
+}
+
+.site-logo {
+  /* REQUIRED: image styling */
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  opacity: 1;
+  mix-blend-mode: multiply;
+}
+
+@keyframes sticker-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Title with a soft warm glow behind it */
+.title-wrap {
+  position: relative;
+  width: max-content;
+  margin: 0 0 4px;
+}
+
+.title-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -50px -70px -40px -60px;
+  /* closest-side keeps the glow fading to nothing inside its box, so no edges show */
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 244, 226, 0.9) 0%,
+    rgba(255, 228, 196, 0.5) 55%,
+    rgba(255, 228, 196, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.site-title {
+  /* REQUIRED from chunk one: font-family, color, font-size */
+  position: relative;
+  margin: 0;
+  font-size: 3.3rem;
+  font-family: "Chewy", "Comic Sans MS", "Trebuchet MS", cursive;
+  font-weight: 400;
+  /* Fallback color; the letters themselves are filled with the shimmer */
+  color: #9c2f24;
+  text-align: left;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  /* Cut-out sticker edge plus a soft warm shadow keep the shimmer readable */
+  filter:
+    drop-shadow(0 2px 0 rgba(255, 250, 240, 0.95))
+    drop-shadow(0 4px 6px rgba(140, 40, 30, 0.22));
+}
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.title-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* "Very Big" winks at the page's size: tilted, bigger and rosier */
+.title-wink {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 0.06em;
+  rotate: -3deg;
+}
+
+/* "Website" drops to its own line, like a hand-lettered sign */
+.title-word-website {
+  display: block;
+  width: max-content;
+  margin-left: 1.4em;
+}
+
+/* Each letter: shimmering warm fill from the background palette, bobbing in a wave.
+   Word offset (--w) + letter position (--l) stagger both animations across the title */
+.title-word-katie { --w: 0; }
+.title-word-very { --w: 8; }
+.title-word-big { --w: 13; }
+.title-word-website { --w: 17; }
+
+.title-word > span:nth-child(1) { --l: 0; }
+.title-word > span:nth-child(2) { --l: 1; }
+.title-word > span:nth-child(3) { --l: 2; }
+.title-word > span:nth-child(4) { --l: 3; }
+.title-word > span:nth-child(5) { --l: 4; }
+.title-word > span:nth-child(6) { --l: 5; }
+.title-word > span:nth-child(7) { --l: 6; }
+
+.title-word > span {
+  display: inline-block;
+  background-image: linear-gradient(
+    100deg,
+    #a52a1c 0%,
+    #d4481c 20%,
+    #f07a24 36%,
+    #ffb35c 46%,
+    #f07a24 56%,
+    #d33742 76%,
+    #8e1f3a 100%
+  );
+  background-size: 600% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(110, 30, 30, 0.3);
+  animation:
+    title-wave 3.2s ease-in-out infinite,
+    title-shimmer 7s ease-in-out infinite alternate;
+  animation-delay:
+    calc((var(--w) + var(--l)) * -0.14s),
+    calc((var(--w) + var(--l)) * -0.2s);
+}
+
+.title-word-very > span,
+.title-word-big > span {
+  font-size: 1.14em;
+  background-image: linear-gradient(
+    100deg,
+    #8e1f3a 0%,
+    #c42d4a 20%,
+    #f26e69 36%,
+    #ff9f8e 46%,
+    #f26e69 56%,
+    #d33742 76%,
+    #8e1f3a 100%
+  );
+}
+
+@keyframes title-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Runs forward then back (alternate), so the shimmer never jumps */
+@keyframes title-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Twinkling sparkles around the title, each on its own timing */
+.title-sparkle {
+  position: absolute;
+  z-index: 2;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #f0a030;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(255, 190, 90, 0.9);
+  pointer-events: none;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.title-sparkle:nth-child(2) { top: -14px; left: -16px; font-size: 1.35rem; animation-duration: 3s; animation-delay: -0.4s; }
+.title-sparkle:nth-child(3) { top: -10px; left: 44%; font-size: 0.9rem; animation-duration: 3.6s; animation-delay: -1.8s; }
+.title-sparkle:nth-child(4) { top: -18px; right: 8px; font-size: 1.25rem; animation-duration: 2.8s; animation-delay: -1.1s; }
+.title-sparkle:nth-child(5) { top: 44%; right: -4px; font-size: 1rem; animation-duration: 3.3s; animation-delay: -2.4s; }
+.title-sparkle:nth-child(6) { bottom: 2px; left: 8px; font-size: 1rem; animation-duration: 3.9s; animation-delay: -0.7s; }
+.title-sparkle:nth-child(7) { bottom: 14px; left: 74%; font-size: 1.3rem; animation-duration: 3.1s; animation-delay: -2.9s; }
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.6) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(20deg);
+  }
+}
+
+/* Handwritten welcome note, written straight onto the page */
+.welcome-message {
+  /* REQUIRED: font-size, color, text-align */
+  margin: 8px 0 0 6px;
+  max-width: 560px;
+  font-size: 1.75rem;
+  font-family: "Caveat", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+  color: #3d2420;
+  text-align: left;
+  line-height: 1.3;
+  font-weight: 600;
+  rotate: -2deg;
+  transform-origin: left center;
+}
+
+.highlight {
+  /* REQUIRED: span, font-style, color, background-color, font-weight, text-decoration */
+  position: relative;
+  font-style: italic;
+  color: #8e1f3a;
+  background-color: #ffe3cf;
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 2px 6px;
+  /* Glitter: a bright glint sweeps across the highlight, then rests */
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  text-shadow: 0 0 6px rgba(255, 190, 110, 0.8);
+  animation: secrets-glint 3.5s ease-in-out infinite;
+}
+
+.highlight::after {
+  content: "✦";
+  position: absolute;
+  top: -0.55em;
+  right: -0.45em;
+  font-size: 0.6em;
+  font-style: normal;
+  color: #f0a030;
+  text-shadow: 0 0 6px rgba(255, 190, 90, 0.9);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+/* The glint starts and ends just outside the word, so each loop restarts unseen */
+@keyframes secrets-glint {
+  0% {
+    background-position: 100% 0;
+  }
+
+  60%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* Retro invitation: a sliding marquee strip plus bouncing arrows */
+.explore-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.marquee {
+  width: 470px;
+  overflow: hidden;
+  padding: 6px 0;
+  background-color: rgba(255, 248, 236, 0.75);
+  border: 2px dashed rgba(142, 31, 58, 0.45);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(142, 60, 40, 0.12);
+  rotate: 1deg;
+}
+
+/* Two identical copies; sliding exactly one copy's width loops seamlessly */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-slide 22s linear infinite;
+}
+
+.marquee-text {
+  flex: none;
+  padding: 0 24px;
+  font-family: "VT323", "Courier New", Courier, monospace;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  color: #7a2a33;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.explore-arrow {
+  display: inline-block;
+  font-size: 1.9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1;
+  color: #c4421f;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 10px rgba(255, 180, 110, 0.8);
+}
+
+.explore-arrow-right {
+  animation: nudge-right 1.8s ease-in-out infinite;
+}
+
+.explore-arrow-down {
+  animation: nudge-down 1.8s ease-in-out infinite;
+  animation-delay: -0.9s;
+}
+
+@keyframes nudge-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes nudge-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Reduced motion: a still, finished-looking cover */
+@media (prefers-reduced-motion: reduce) {
+  .logo-sticker,
+  .title-word > span,
+  .title-sparkle,
+  .highlight,
+  .highlight::after,
+  .marquee-track,
+  .explore-arrow {
+    animation: none;
+  }
+
+  /* Show the invitation once, wrapped, instead of a frozen half-slid strip */
+  .marquee-track {
+    display: block;
+    width: auto;
+  }
+
+  .marquee-text {
+    display: block;
+    white-space: normal;
+  }
+
+  .marquee-text + .marquee-text {
+    display: none;
+  }
+}
+
+.apple {
+  /* REQUIRED: image styling away from welcome zone */
+  position: absolute;
+  top: 1750px;
+  left: 2100px;
+  width: 320px;
+  height: auto;
+  border: 2px solid rgba(178, 134, 65, 0.7);
+  opacity: 0.9;
+  transform: rotate(-5deg);
+  box-shadow: 0 10px 16px rgba(80, 64, 42, 0.14);
+}
+
+/* Background moods: soft radial washes of the reference palette, one per area,
+   stacked over a warm-to-cool base so every area melts into the next.
+   Layers listed first sit on top. */
+.page {
+  background:
+    /* Flow: faint curved streaks, like the reference's wavy brush strokes */
+    repeating-radial-gradient(circle at -600px 3700px,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.07) 55px,
+      rgba(255, 255, 255, 0) 110px,
+      rgba(42, 8, 32, 0.03) 165px,
+      rgba(255, 255, 255, 0) 220px),
+
+    /* Light pools where text and white-backed images sit */
+    radial-gradient(ellipse 560px 300px at 2440px 330px, rgba(255, 250, 244, 0.95), rgba(255, 250, 244, 0) 100%),
+    radial-gradient(ellipse 900px 680px at 380px 330px, rgba(255, 222, 186, 0.95), rgba(255, 222, 186, 0) 100%),
+    radial-gradient(ellipse 760px 620px at 2480px 420px, rgba(255, 232, 202, 0.97), rgba(255, 232, 202, 0) 100%),
+    radial-gradient(ellipse 720px 380px at 1290px 560px, rgba(255, 246, 236, 0.95), rgba(255, 246, 236, 0) 100%),
+    radial-gradient(ellipse 820px 540px at 970px 1150px, rgba(250, 222, 192, 0.95), rgba(250, 222, 192, 0) 100%),
+    radial-gradient(ellipse 600px 520px at 1810px 990px, rgba(204, 236, 242, 0.97), rgba(204, 236, 242, 0) 100%),
+    radial-gradient(ellipse 380px 340px at 2470px 1180px, rgba(255, 236, 212, 0.9), rgba(255, 236, 212, 0) 100%),
+    radial-gradient(ellipse 360px 320px at 2700px 1540px, rgba(212, 238, 244, 0.9), rgba(212, 238, 244, 0) 100%),
+    radial-gradient(ellipse 680px 500px at 450px 1960px, rgba(253, 218, 214, 0.97), rgba(253, 218, 214, 0) 100%),
+    radial-gradient(ellipse 820px 620px at 2400px 2560px, rgba(206, 234, 242, 0.95), rgba(206, 234, 242, 0) 100%),
+
+    /* Mood halos: richer reference colors ringing each light pool */
+    radial-gradient(ellipse 980px 760px at 1810px 990px, rgba(35, 150, 183, 0) 40%, rgba(35, 150, 183, 0.42) 68%, rgba(35, 150, 183, 0) 100%),
+    radial-gradient(ellipse 900px 700px at 450px 1960px, rgba(211, 55, 66, 0) 42%, rgba(211, 55, 66, 0.34) 70%, rgba(211, 55, 66, 0) 100%),
+    radial-gradient(ellipse 700px 460px at 1080px 140px, rgba(255, 146, 50, 0.6), rgba(255, 146, 50, 0) 100%),
+    radial-gradient(ellipse 620px 420px at 1760px 300px, rgba(242, 110, 105, 0.45), rgba(242, 110, 105, 0) 100%),
+    radial-gradient(ellipse 520px 420px at 2980px 60px, rgba(242, 110, 105, 0.5), rgba(242, 110, 105, 0) 100%),
+    radial-gradient(ellipse 520px 420px at 1150px 2470px, rgba(255, 146, 50, 0.45), rgba(255, 146, 50, 0) 100%),
+    radial-gradient(ellipse 520px 420px at 2260px 1880px, rgba(241, 114, 32, 0.3), rgba(241, 114, 32, 0) 100%),
+    radial-gradient(ellipse 640px 320px at 2750px 2980px, rgba(35, 150, 183, 0.4), rgba(35, 150, 183, 0) 100%),
+
+    /* Shadow accents, kept to open space between clusters */
+    radial-gradient(ellipse 560px 420px at 1460px 1860px, rgba(12, 66, 95, 0.55), rgba(12, 66, 95, 0) 100%),
+    radial-gradient(ellipse 680px 400px at 360px 2780px, rgba(42, 8, 32, 0.45), rgba(42, 8, 32, 0) 100%),
+    radial-gradient(ellipse 380px 340px at 3000px 2080px, rgba(63, 3, 3, 0.3), rgba(63, 3, 3, 0) 100%),
+
+    /* Base: warm top drifting to cool bottom, like the reference */
+    linear-gradient(160deg, #f9c79a 0%, #f4b39c 28%, #e9c4b4 48%, #a4d1df 75%, #80c1d7 100%);
+}
+
+.site-title,
+.welcome-message,
+.highlight {
+  font-style: normal;
+}
+
+.highlight {
+  text-decoration: underline;
+}
+
+body {
+  background-color: #dfeaf2;
+}
+
+#welcome-zone,
+.site-logo {
+  background-color: transparent;
+}
+
+.highlight {
+  background-color: #ffe3cf;
+}
+
+#garden-zone {
+  /* REQUIRED: ID + border + width + height + margin + padding + opacity */
+  position: absolute;
+  top: 120px;
+  right: 110px;
+  width: 780px;
+  height: 620px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.garden-zone {
+  /* REQUIRED: class */
+  overflow: visible;
+}
+
+.cluster-label {
+  /* REQUIRED: font-size + font-family + color + text-align + font-weight */
+  position: absolute;
+  top: 20px;
+  left: 34px;
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5d6d45;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+#garden-zone .cluster-label {
+  top: 20px;
+  left: 34px;
+  color: #5d6d45;
+}
+
+#pets-zone .cluster-label {
+  top: 0;
+  left: 30px;
+  color: #495d76;
+}
+
+#music-zone .cluster-label {
+  top: 0;
+  left: 50px;
+  color: #404d68;
+}
+
+#heart-zone .cluster-label {
+  top: 8px;
+  left: 36px;
+  color: #7a3e5d;
+}
+
+.flower-frame {
+  position: absolute;
+  display: block;
+  overflow: visible;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.garden-flower {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: none;
+  background-color: transparent;
+}
+
+.butterfly,
+.daisy {
+  mix-blend-mode: multiply;
+}
+
+.butterfly-frame {
+  top: 120px;
+  left: 120px;
+  width: 220px;
+  height: 180px;
+  transform: rotate(-8deg);
+  /* Blend the whole frame so the photo's white stays hidden while it moves */
+  mix-blend-mode: multiply;
+  animation: butterfly-hover 7s ease-in-out infinite;
+}
+
+.butterfly {
+  transform-origin: 50% 50%;
+  animation: butterfly-flap 3.2s ease-in-out infinite;
+}
+
+/* Slow drift: small loop up, down and side to side, with a slight tilt */
+@keyframes butterfly-hover {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-8deg);
+  }
+
+  25% {
+    transform: translate(6px, -8px) rotate(-6deg);
+  }
+
+  50% {
+    transform: translate(0, -12px) rotate(-9deg);
+  }
+
+  75% {
+    transform: translate(-6px, -5px) rotate(-10deg);
+  }
+}
+
+/* Two soft wing beats, then the wings rest open */
+@keyframes butterfly-flap {
+  0%,
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+
+  15% {
+    transform: scaleX(0.4) scaleY(0.97);
+  }
+
+  30% {
+    transform: scaleX(1);
+  }
+
+  45% {
+    transform: scaleX(0.5) scaleY(0.98);
+  }
+}
+
+/* Visitors who prefer reduced motion see a still butterfly */
+@media (prefers-reduced-motion: reduce) {
+  .butterfly-frame,
+  .butterfly {
+    animation: none;
+  }
+}
+
+.zinnia-frame {
+  top: 200px;
+  left: 300px;
+  width: 190px;
+  height: 190px;
+  transform: rotate(10deg);
+}
+
+.zinnia {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  clip-path: inset(8% round 50%);
+}
+
+.daisy-frame {
+  top: 170px;
+  right: 110px;
+  width: 180px;
+  height: 180px;
+  transform: rotate(-5deg);
+  /* Blend the whole frame so the photo's white background stays hidden */
+  mix-blend-mode: multiply;
+}
+
+.lily-frame {
+  bottom: 30px;
+  left: 250px;
+  width: 240px;
+  height: 240px;
+  transform: rotate(3deg);
+  background-color: transparent;
+}
+
+.hover-secret {
+  /* REQUIRED: opacity + background-color */
+  background-color: transparent;
+  opacity: 1;
+}
+
+.secret-hover-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  font-size: 1.05rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #fffaf2;
+  background-color: rgba(79, 65, 50, 0.75);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.hover-secret:hover .secret-hover-message,
+.hover-secret:focus-within .secret-hover-message {
+  opacity: 1;
+}
+
+.garden-clue-wrap {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  width: 260px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: visible;
+}
+
+.garden-clue {
+  /* REQUIRED: opacity + text-align + font-style */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  /* Deeper shade of the garden label's olive: readable, still a quiet hint */
+  color: #4f5f38;
+  font-style: italic;
+  text-align: right;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 8px var(--glow),
+    0 0 18px var(--glow-soft);
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+
+.garden-clue-reveal {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  /* The reveal grows upward for its larger text; only the clue itself triggers it */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #fffaf2;
+  background-color: rgba(98, 92, 76, 0.82);
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.garden-clue-wrap:hover .garden-clue,
+.garden-clue-wrap:focus-within .garden-clue {
+  opacity: 0;
+}
+
+.garden-clue-wrap:hover .garden-clue-reveal,
+.garden-clue-wrap:focus-within .garden-clue-reveal {
+  opacity: 1;
+}
+
+#pets-zone {
+  /* REQUIRED: ID + width + height + margin + padding + opacity */
+  position: absolute;
+  left: 520px;
+  top: 880px;
+  width: 900px;
+  height: 520px;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.pets-zone {
+  /* REQUIRED: class */
+  overflow: visible;
+}
+
+.pet-card {
+  position: absolute;
+  width: 260px;
+  height: 300px;
+  background-color: transparent;
+  overflow: visible;
+}
+
+.pet-card-cat {
+  left: 40px;
+  top: 110px;
+  transform: rotate(-4deg);
+}
+
+.pet-card-puppy {
+  position: relative;
+  left: 330px;
+  top: 80px;
+  transform: rotate(3deg);
+  z-index: 1;
+}
+
+.pet-card-sleepy {
+  right: 30px;
+  top: 150px;
+  transform: rotate(-2deg);
+}
+
+.pet-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background-color: transparent;
+  border: none;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+.pet-hover-message {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: 220px;
+  padding: 12px 10px;
+  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #fffaf2;
+  background-color: rgba(67, 82, 88, 0.8);
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.pet-card-cat:hover .pet-hover-message,
+.pet-card-cat:focus-within .pet-hover-message {
+  opacity: 1;
+}
+
+.cat-photo {
+  width: 230px;
+  margin: 0 auto;
+}
+
+.puppy-photo {
+  width: 260px;
+  margin: 0 auto;
+}
+
+.sleepy-photo {
+  width: 210px;
+  margin: 0 auto;
+}
+
+.pet-caption {
+  /* REQUIRED: font-size + font-style + color + background-color + text-align + text-decoration */
+  margin: 8px 0 0;
+  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: #2f4052;
+  background-color: rgba(255, 255, 255, 0.12);
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.pet-secret-clue {
+  display: block;
+  margin: 8px auto 0;
+  width: 150px;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-style: italic;
+  color: rgba(101, 81, 69, 0.66);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  text-align: center;
+  opacity: 0.9;
+  user-select: none;
+}
+
+.pet-secret {
+  position: absolute;
+  left: 18px;
+  top: 70px;
+  margin: 0;
+  width: 220px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-family: Georgia, "Times New Roman", serif;
+  /* Fully transparent: no lettering shows until the puppy is hovered */
+  color: transparent;
+  text-align: center;
+  letter-spacing: 0.04em;
+  user-select: text;
+  z-index: 0;
+  transition: color 0.2s ease, text-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* In the open space just below Pip's caption (in normal flow, so it always follows
+   the caption), clear of Pip, his hearts and the other pets. The card doesn't move,
+   so the text stays perfectly still while Pip bounces */
+.pet-secret-puppy {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: auto;
+  margin: 8px 12px 0;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  z-index: 0;
+  opacity: 0;
+  color: transparent;
+  background-color: transparent;
+  text-shadow: none;
+}
+
+/* Revealed by hovering Pip: deep brown on warm apricot, styled like the other reveals */
+.puppy-photo:hover ~ .pet-secret-puppy,
+.puppy-photo:focus-visible ~ .pet-secret-puppy,
+.pet-card-puppy:hover .pet-secret-puppy,
+.pet-card-puppy:focus-within .pet-secret-puppy {
+  opacity: 1 !important;
+  color: #4a2116 !important;
+  background-color: rgba(255, 222, 178, 0.95) !important;
+  text-shadow: 0 0 8px rgba(255, 236, 203, 0.9) !important;
+}
+
+.puppy-photo {
+  position: relative;
+  z-index: 2;
+}
+
+/* Living pets: only the photos move, so captions and both pet secrets stay still.
+   Each pet runs on its own timing so they never move in sync */
+
+/* Juniper: slow, graceful breathing, and now and then a tilt as if she's
+   noticed something, before settling back */
+.cat-photo {
+  transform-origin: 50% 100%;
+  animation:
+    cat-breathe 5.2s ease-in-out infinite,
+    cat-glance 13s ease-in-out -3s infinite;
+}
+
+@keyframes cat-breathe {
+  0%,
+  100% {
+    scale: 1 1;
+  }
+
+  50% {
+    scale: 1.008 1.02;
+  }
+}
+
+@keyframes cat-glance {
+  0%,
+  55%,
+  88%,
+  100% {
+    rotate: 0deg;
+  }
+
+  64%,
+  78% {
+    rotate: 2.5deg;
+  }
+}
+
+/* Pip: a happy bounce-and-wiggle; hovering lifts him up in excitement */
+.puppy-photo {
+  transform-origin: 50% 100%;
+  animation: pup-wiggle 1.6s ease-in-out infinite;
+  transition: transform 0.35s ease;
+}
+
+.puppy-photo:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+@keyframes pup-wiggle {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: -1.5deg;
+  }
+
+  25%,
+  75% {
+    translate: 0 -6px;
+    rotate: 0deg;
+  }
+
+  50% {
+    translate: 0 0;
+    rotate: 1.5deg;
+  }
+}
+
+/* Tiny hearts float up from Pip while he's hovered, then fade */
+.pup-hearts {
+  position: absolute;
+  left: 90px;
+  top: 40px;
+  z-index: 3;
+  width: 80px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pup-hearts span {
+  position: absolute;
+  bottom: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: #e8687c;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 180, 205, 0.9);
+  opacity: 0;
+  animation: heart-float 2.4s ease-out infinite paused;
+}
+
+.pup-hearts span:nth-child(1) { left: 0; font-size: 0.9rem; --hx: -8px; animation-delay: 0s; }
+.pup-hearts span:nth-child(2) { left: 24px; font-size: 1.15rem; --hx: 6px; animation-delay: -0.6s; }
+.pup-hearts span:nth-child(3) { left: 48px; font-size: 0.8rem; --hx: -4px; animation-delay: -1.2s; }
+.pup-hearts span:nth-child(4) { left: 66px; font-size: 1rem; --hx: 10px; animation-delay: -1.8s; }
+
+.puppy-photo:hover ~ .pup-hearts {
+  opacity: 1;
+}
+
+.puppy-photo:hover ~ .pup-hearts span {
+  animation-play-state: running;
+}
+
+@keyframes heart-float {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--hx), -60px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Nori: asleep, with slow, deep breaths */
+.sleepy-photo {
+  transform-origin: 50% 100%;
+  animation: nori-breathe 4.6s ease-in-out -1s infinite;
+}
+
+@keyframes nori-breathe {
+  0%,
+  100% {
+    scale: 1 1;
+  }
+
+  50% {
+    scale: 1.008 1.03;
+  }
+}
+
+/* "z z z" drifting up from near Nori's head, growing and fading */
+.sleep-z {
+  position: absolute;
+  left: 205px;
+  top: 8px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sleep-z span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Caveat", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #3f5270;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 8px var(--glow);
+  opacity: 0;
+  animation: z-drift 4.8s ease-in-out infinite;
+}
+
+.sleep-z span:nth-child(2) { animation-delay: -1.6s; }
+.sleep-z span:nth-child(3) { animation-delay: -3.2s; }
+
+@keyframes z-drift {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(26px, -50px) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Paw prints: an invisible pet wanders from the pets toward the twilight sky's
+   "make a wish" sign, one print at a time */
+.paw-trail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.paw-print {
+  position: absolute;
+  width: 14px;
+  height: 12px;
+  border-radius: 50% 50% 45% 45%;
+  background-color: rgba(105, 66, 48, 0.5);
+  /* Toes point the way it's walking */
+  rotate: 119.4deg;
+  opacity: 0;
+  animation: paw-step 8s ease-in-out infinite;
+}
+
+/* Four toes from one dot and its shadows */
+.paw-print::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: -8px;
+  width: 5px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(105, 66, 48, 0.5);
+  box-shadow:
+    5px -3px 0 0 rgba(105, 66, 48, 0.5),
+    10px -3px 0 0 rgba(105, 66, 48, 0.5),
+    15px 0 0 0 rgba(105, 66, 48, 0.5);
+}
+
+.paw-print:nth-child(1) { left: 986px; top: 1422px; animation-delay: 0s; }
+.paw-print:nth-child(2) { left: 1040px; top: 1434px; animation-delay: 0.45s; }
+.paw-print:nth-child(3) { left: 1078px; top: 1473px; animation-delay: 0.9s; }
+.paw-print:nth-child(4) { left: 1131px; top: 1485px; animation-delay: 1.35s; }
+.paw-print:nth-child(5) { left: 1169px; top: 1525px; animation-delay: 1.8s; }
+.paw-print:nth-child(6) { left: 1222px; top: 1537px; animation-delay: 2.25s; }
+.paw-print:nth-child(7) { left: 1260px; top: 1576px; animation-delay: 2.7s; }
+.paw-print:nth-child(8) { left: 1314px; top: 1588px; animation-delay: 3.15s; }
+
+/* Each print fades in, lingers, and fades; every print is gone before the loop restarts */
+@keyframes paw-step {
+  0% {
+    opacity: 0;
+  }
+
+  5%,
+  30% {
+    opacity: 0.85;
+  }
+
+  45%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Reduced motion: still pets, with no hearts, z's or paw prints */
+@media (prefers-reduced-motion: reduce) {
+  .cat-photo,
+  .puppy-photo,
+  .sleepy-photo {
+    animation: none;
+    transition: none;
+  }
+
+  .puppy-photo:hover {
+    transform: none;
+  }
+
+  .pup-hearts,
+  .sleep-z,
+  .paw-trail {
+    display: none;
+  }
+}
+
+#music-zone {
+  /* REQUIRED: ID + width + height + margin + padding + opacity */
+  position: absolute;
+  left: 1540px;
+  top: 720px;
+  width: 540px;
+  height: 520px;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.music-zone {
+  /* REQUIRED: class */
+  overflow: visible;
+}
+
+.music-stack {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  overflow: visible;
+}
+
+.music-stack-one {
+  left: 80px;
+  top: 80px;
+  transform: rotate(-12deg);
+}
+
+.music-stack-two {
+  left: 190px;
+  top: 120px;
+  transform: rotate(5deg);
+}
+
+.music-stack-three {
+  left: 300px;
+  top: 90px;
+  transform: rotate(-8deg);
+}
+
+.music-disc {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.disc-one {
+  filter: saturate(0.9);
+}
+
+.disc-two,
+.disc-three {
+  width: 150px;
+  height: 150px;
+}
+
+.track-list {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  width: 270px;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: "Courier New", Courier, monospace;
+  color: #2d3652;
+  background-color: rgba(255, 255, 255, 0.32);
+  text-align: left;
+  line-height: 1.7;
+  border: 1px solid rgba(78, 83, 112, 0.25);
+  transform: rotate(-2deg);
+}
+
+.track-list p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.track-secret {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #465470;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  user-select: text;
+  font-weight: 600;
+}
+
+.track-secret::selection {
+  background: rgba(255, 244, 179, 0.9);
+  color: #4a3f2f;
+}
+
+.music-secret {
+  position: absolute;
+  right: 24px;
+  bottom: 36px;
+  width: 180px;
+  font-size: 0.92rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: rgba(34, 53, 64, 0.78);
+  text-align: right;
+  font-style: italic;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.music-caption {
+  /* REQUIRED: font-size + font-style + color + background-color + text-align + text-decoration */
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  margin: 0;
+  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: #43586b;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: right;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+#heart-zone {
+  /* REQUIRED: ID + width + height + margin + padding + opacity */
+  position: absolute;
+  left: 130px;
+  top: 1680px;
+  width: 640px;
+  height: 540px;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.heart-zone {
+  /* REQUIRED: class */
+  overflow: visible;
+}
+
+.heart-photo-card {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: 210px;
+  padding: 10px 10px 28px;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 20px rgba(100, 62, 70, 0.12);
+  border: 1px solid rgba(122, 62, 93, 0.15);
+  overflow: hidden;
+}
+
+.glossy-card {
+  left: 30px;
+  top: 80px;
+  transform: rotate(-7deg);
+}
+
+.clear-card {
+  left: 222px;
+  top: 120px;
+  transform: rotate(8deg);
+}
+
+.heart-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: transparent;
+  border: none;
+}
+
+.glossy-heart {
+  object-position: center;
+  background-color: #e8e3e0;
+}
+
+.clear-heart {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.heart-balloon-wrap {
+  position: absolute;
+  right: 90px;
+  top: 48px;
+  width: 150px;
+  height: 210px;
+  transform: rotate(3deg);
+}
+
+.heart-balloon {
+  display: block;
+  width: 140px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 12px rgba(146, 56, 64, 0.16));
+}
+
+.balloon-string {
+  position: absolute;
+  left: 62px;
+  top: 190px;
+  width: 2px;
+  height: 55px;
+  background: linear-gradient(to bottom, rgba(116, 80, 51, 0.8), rgba(116, 80, 51, 0.2));
+}
+
+.love-note {
+  position: absolute;
+  left: 205px;
+  bottom: 42px;
+  width: 220px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(122, 62, 93, 0.2);
+}
+
+.love-note-text {
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #4d243b;
+  text-align: center;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.heart-note-tab {
+  position: absolute;
+  left: 10px;
+  bottom: 54px;
+  width: 180px;
+  min-height: 52px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(122, 62, 93, 0.18);
+  box-shadow: 0 6px 12px rgba(122, 62, 93, 0.04);
+  outline: none;
+}
+
+.heart-note-fold {
+  display: block;
+  font-size: 0.9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5d2d46;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+.heart-secret {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-family: Georgia, "Times New Roman", serif;
+  text-align: center;
+  color: #492334;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.heart-note-tab:focus .heart-secret,
+.heart-note-tab:hover .heart-secret {
+  opacity: 1;
+}
+
+.heart-secret-focus {
+  color: #4a2138;
+  margin-top: 6px;
+  text-decoration: underline;
+}
+
+.heart-letter {
+  position: absolute;
+  left: 440px;
+  right: auto;
+  bottom: 42px;
+  width: 190px;
+  min-height: 74px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(122, 62, 93, 0.18);
+}
+
+.heart-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.heart-toggle-label {
+  display: block;
+  font-size: 0.9rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5d2d46;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.heart-secret-toggle {
+  color: #4a2138;
+  margin-top: 8px;
+  text-decoration: underline;
+}
+
+.heart-toggle:checked ~ .heart-secret-toggle,
+.heart-toggle:focus-visible ~ .heart-secret-toggle {
+  opacity: 1;
+}
+
+.heart-caption {
+  /* REQUIRED: font-size + font-style + color + background-color + text-align + text-decoration */
+  position: absolute;
+  right: 18px;
+  bottom: 8px;
+  margin: 0;
+  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: #4e2d3d;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: right;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Floating bubbles: a click-through layer over the heart cluster,
+   so the "for later" note and "open letter" stay hoverable and clickable */
+.heart-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.heart-bubble {
+  position: absolute;
+  bottom: var(--start, 20px);
+  left: var(--x, 0);
+  width: var(--size, 30px);
+  height: var(--size, 30px);
+  border-radius: 50%;
+  border: 1px solid rgba(236, 140, 182, 0.6);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.95) 0 8%, rgba(255, 255, 255, 0) 22%),
+    radial-gradient(circle at 70% 78%, rgba(255, 255, 255, 0.45) 0 5%, rgba(255, 255, 255, 0) 14%),
+    radial-gradient(circle at 50% 50%, rgba(255, 182, 210, 0.22) 0 50%, rgba(230, 104, 156, 0.55) 100%);
+  box-shadow:
+    inset 0 0 8px rgba(226, 98, 150, 0.35),
+    0 2px 6px rgba(200, 96, 140, 0.12);
+  /* Shown still (reduced motion); the animation fades it in and out */
+  opacity: 0.6;
+  animation: heart-bubble-rise var(--speed, 16s) ease-in-out var(--delay, 0s) infinite;
+}
+
+/* Every other bubble sways the opposite way */
+.heart-bubble:nth-child(even) {
+  animation-name: heart-bubble-rise-alt;
+}
+
+/* Each bubble gets its own size, start point, speed and offset
+   (negative delays start them mid-flight so they never move in sync) */
+.heart-bubble:nth-child(1) { --x: 40px; --start: 30px; --size: 34px; --rise: 330px; --speed: 17s; --delay: -3s; }
+.heart-bubble:nth-child(2) { --x: 130px; --start: 110px; --size: 18px; --rise: 280px; --speed: 13s; --delay: -9s; }
+.heart-bubble:nth-child(3) { --x: 205px; --start: 10px; --size: 46px; --rise: 360px; --speed: 21s; --delay: -14s; }
+.heart-bubble:nth-child(4) { --x: 290px; --start: 150px; --size: 14px; --rise: 240px; --speed: 12s; --delay: -5s; }
+.heart-bubble:nth-child(5) { --x: 360px; --start: 40px; --size: 28px; --rise: 340px; --speed: 18s; --delay: -11s; }
+.heart-bubble:nth-child(6) { --x: 425px; --start: 90px; --size: 22px; --rise: 300px; --speed: 15s; --delay: -1s; }
+.heart-bubble:nth-child(7) { --x: 490px; --start: 20px; --size: 38px; --rise: 350px; --speed: 20s; --delay: -16s; }
+.heart-bubble:nth-child(8) { --x: 560px; --start: 130px; --size: 16px; --rise: 260px; --speed: 14s; --delay: -7s; }
+.heart-bubble:nth-child(9) { --x: 585px; --start: 50px; --size: 26px; --rise: 320px; --speed: 19s; --delay: -12s; }
+.heart-bubble:nth-child(10) { --x: 10px; --start: 170px; --size: 20px; --rise: 230px; --speed: 16s; --delay: -8s; }
+
+/* Rise with a gentle sway; invisible at both ends so each loop restarts unseen */
+@keyframes heart-bubble-rise {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  35% {
+    transform: translate(12px, calc(var(--rise) * -0.35)) scale(0.95);
+  }
+
+  65% {
+    transform: translate(-10px, calc(var(--rise) * -0.68)) scale(1);
+  }
+
+  85% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(6px, calc(var(--rise) * -1)) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-bubble-rise-alt {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  35% {
+    transform: translate(-12px, calc(var(--rise) * -0.35)) scale(0.95);
+  }
+
+  65% {
+    transform: translate(10px, calc(var(--rise) * -0.68)) scale(1);
+  }
+
+  85% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-6px, calc(var(--rise) * -1)) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* Visitors who prefer reduced motion see the bubbles resting still */
+@media (prefers-reduced-motion: reduce) {
+  .heart-bubble {
+    animation: none;
+  }
+}
+
+.scatter {
+  position: absolute;
+  display: block;
+  background-color: transparent;
+  border: none;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.scatter-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: transparent;
+  border: none;
+}
+
+.scatter-car {
+  left: 1080px;
+  top: 420px;
+  width: 420px;
+  transform: rotate(-3deg);
+  /* Blend the whole frame so the photo's white background stays hidden */
+  mix-blend-mode: multiply;
+  animation: car-drive 14s linear infinite;
+}
+
+.car-image {
+  /* Cropped to the car itself so it fills the frame */
+  width: 420px;
+  height: 270px;
+  object-fit: cover;
+  object-position: 50% 55%;
+  background-color: transparent;
+  mix-blend-mode: multiply;
+  animation: car-bob 0.9s ease-in-out infinite;
+}
+
+/* The car drives slowly forward (to the left), fading in and out at the ends
+   so each loop restarts unseen */
+@keyframes car-drive {
+  0% {
+    transform: translateX(130px) rotate(-3deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-130px) rotate(-3deg);
+    opacity: 0;
+  }
+}
+
+/* A small bounce, like the car rolling over the road */
+@keyframes car-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Visitors who prefer reduced motion see the car parked */
+@media (prefers-reduced-motion: reduce) {
+  .scatter-car,
+  .car-image {
+    animation: none;
+  }
+}
+
+.scatter-stars {
+  left: 2360px;
+  top: 1060px;
+  width: 220px;
+  transform: rotate(10deg);
+  /* Blend the whole frame so the photo's white background stays hidden */
+  mix-blend-mode: multiply;
+}
+
+.stars-image {
+  width: 220px;
+  background-color: transparent;
+  mix-blend-mode: multiply;
+}
+
+/* Gold sparkles shining loose in the twilight sky (no polaroid).
+   No transform here, so the image's blend reaches the page */
+.scatter-sparkle-photo {
+  left: 1000px;
+  top: 2230px;
+  width: 280px;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.sparkle-photo-image {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  background-color: transparent;
+  /* The checkerboard is baked into the photo as light gray (239) and white squares.
+     Brightening turns the gray squares (and the photo's gray glow) white;
+     multiply then removes all white */
+  filter: brightness(1.24) contrast(1.15) saturate(1.5);
+  mix-blend-mode: multiply;
+}
+
+/* Glowing cores restored over the three sparkles (multiply alone would lose their white centers) */
+.scatter-sparkle-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle 30px at 175px 120px, rgba(255, 255, 240, 0.95), rgba(255, 226, 140, 0.45) 40%, rgba(255, 210, 120, 0) 100%),
+    radial-gradient(circle 22px at 78px 175px, rgba(255, 255, 240, 0.9), rgba(255, 226, 140, 0.4) 40%, rgba(255, 210, 120, 0) 100%),
+    radial-gradient(circle 20px at 208px 206px, rgba(255, 255, 240, 0.9), rgba(255, 226, 140, 0.4) 40%, rgba(255, 210, 120, 0) 100%);
+  animation: sparkle-shine 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle-shine {
+  from {
+    opacity: 0.55;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.scatter-bubble {
+  /* REQUIRED: ID + width + height + margin + padding + opacity */
+  position: absolute;
+  left: 1620px;
+  top: 1290px;
+  width: 170px;
+  height: 72px;
+  margin: 0;
+  padding: 14px 18px;
+  background-color: rgba(244, 244, 244, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 8px 14px rgba(81, 78, 90, 0.08);
+  transform: rotate(2deg);
+  box-sizing: border-box;
+}
+
+.scatter-bubble::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  bottom: -14px;
+  width: 18px;
+  height: 18px;
+  background: rgba(244, 244, 244, 0.9);
+  transform: rotate(45deg);
+}
+
+.speech-bubble-text {
+  display: block;
+  font-size: 1.3rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #4c4a54;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sparkle-secret-wrap {
+  position: absolute;
+  left: 2660px;
+  top: 1500px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.sparkle-secret-image {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.2;
+  filter: brightness(1.4) saturate(0.4);
+  background-color: transparent;
+  /* Blend away the white square so the secret stays hidden on the colored background */
+  mix-blend-mode: multiply;
+}
+
+.sparkle-secret-reveal {
+  position: absolute;
+  /* Readable card centered on the sparkle instead of text squeezed into its 90px box */
+  left: 50%;
+  top: 50%;
+  width: 230px;
+  transform: translate(-50%, -50%);
+  padding: 12px 14px;
+  box-sizing: border-box;
+  border: 1px solid rgba(201, 160, 92, 0.35);
+  box-shadow: 0 8px 18px rgba(150, 110, 60, 0.15);
+  pointer-events: none;
+  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #3d2c22;
+  background-color: rgba(255, 248, 236, 0.96);
+  text-align: center;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sparkle-secret-wrap:hover .sparkle-secret-reveal,
+.sparkle-secret-wrap:focus-within .sparkle-secret-reveal {
+  opacity: 1;
+}
+
+.quote-dialogue {
+  position: absolute;
+  left: 2050px;
+  top: 2280px;
+  width: 340px;
+  padding: 18px 20px;
+  background-color: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(87, 82, 92, 0.2);
+  box-shadow: 0 8px 14px rgba(74, 67, 73, 0.08);
+  transform: rotate(-1deg);
+}
+
+.quote-text {
+  /* REQUIRED: font-size + font-style + color + background-color + text-align + text-decoration */
+  margin: 0;
+  font-size: 1.15rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: #564850;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.quote-credit {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.92rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5d4b4f;
+  text-align: center;
+  text-transform: none;
+}
+
+.final-surprise {
+  position: absolute;
+  /* Tucked into the bottom-right corner, about 50px inside the 3000px page edges */
+  left: 2490px;
+  top: 2840px;
+  width: 420px;
+  padding: 18px 20px;
+  background-color: rgba(255, 255, 255, 0.44);
+  border: 1px solid rgba(87, 82, 92, 0.18);
+  box-shadow: 0 10px 18px rgba(74, 67, 73, 0.06);
+}
+
+.final-surprise-title {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #5d4b4f;
+  text-align: center;
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+.final-surprise-text {
+  margin: 0;
+  font-size: 1.15rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #4a3a40;
+  text-align: center;
+  line-height: 1.6;
+  font-style: italic;
+}
+/* Glow: layered text-shadows (a thin bright core plus a wider tinted halo),
+   so text looks softly lit from behind without blurring the letters */
+
+/* Each cluster's glow colors, matched to its palette */
+#garden-zone {
+  --glow: rgba(214, 232, 168, 0.95);
+  --glow-soft: rgba(196, 220, 140, 0.55);
+}
+
+#pets-zone {
+  --glow: rgba(255, 236, 206, 0.95);
+  --glow-soft: rgba(240, 196, 150, 0.55);
+}
+
+#music-zone {
+  --glow: rgba(214, 244, 250, 0.95);
+  --glow-soft: rgba(130, 200, 222, 0.55);
+}
+
+#heart-zone {
+  --glow: rgba(252, 208, 226, 0.95);
+  --glow-soft: rgba(240, 164, 198, 0.55);
+}
+
+/* Captions: cluster labels and the captions under pets, music and heart */
+.cluster-label,
+.pet-caption,
+.music-caption,
+.heart-caption {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 8px var(--glow),
+    0 0 18px var(--glow-soft);
+}
+
+/* Secret reveals: no glow while hidden; the glow blooms in with the message */
+.secret-hover-message,
+.garden-clue-reveal,
+.pet-hover-message,
+.heart-secret,
+.sparkle-secret-reveal {
+  text-shadow:
+    0 0 0 transparent,
+    0 0 0 transparent,
+    0 0 0 transparent;
+  transition:
+    opacity 0.45s ease,
+    text-shadow 0.9s ease;
+}
+
+/* Lily: warm gold glow on light text over the brown panel */
+.hover-secret:hover .secret-hover-message,
+.hover-secret:focus-within .secret-hover-message {
+  text-shadow:
+    0 0 1px rgba(255, 244, 222, 0.9),
+    0 0 8px rgba(255, 206, 150, 0.75),
+    0 0 18px rgba(255, 180, 120, 0.45);
+}
+
+/* Garden clue: soft green-gold glow over the olive panel */
+.garden-clue-wrap:hover .garden-clue-reveal,
+.garden-clue-wrap:focus-within .garden-clue-reveal {
+  text-shadow:
+    0 0 1px rgba(250, 248, 224, 0.9),
+    0 0 8px rgba(226, 236, 168, 0.7),
+    0 0 18px rgba(200, 220, 130, 0.4);
+}
+
+/* Cat: cool moonlight glow over the slate panel */
+.pet-card-cat:hover .pet-hover-message,
+.pet-card-cat:focus-within .pet-hover-message {
+  text-shadow:
+    0 0 1px rgba(240, 248, 255, 0.9),
+    0 0 8px rgba(196, 224, 255, 0.7),
+    0 0 18px rgba(160, 200, 245, 0.4);
+}
+
+/* Heart notes: rosy halo behind the dark text */
+.heart-note-tab:focus .heart-secret,
+.heart-note-tab:hover .heart-secret,
+.heart-toggle:checked ~ .heart-secret-toggle,
+.heart-toggle:focus-visible ~ .heart-secret-toggle {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(252, 196, 222, 0.95),
+    0 0 20px rgba(240, 156, 196, 0.55);
+}
+
+/* Sparkle: golden halo behind the dark text on its cream card */
+.sparkle-secret-wrap:hover .sparkle-secret-reveal,
+.sparkle-secret-wrap:focus-within .sparkle-secret-reveal {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(255, 216, 140, 0.9),
+    0 0 20px rgba(246, 190, 100, 0.5);
+}
+
+/* Select-to-reveal secrets glow only while selected, so they stay hidden until found */
+.pet-secret::selection {
+  text-shadow: 0 0 8px rgba(255, 226, 170, 0.9);
+}
+
+.track-secret::selection {
+  text-shadow: 0 0 8px rgba(255, 236, 150, 0.95);
+}
+
+/* Twilight sky: the evening sky between the hearts and the quote, where the
+   pink background fades into blue. A click-through layer with no background
+   of its own, so it melts into the page with no edges */
+.twilight-sky {
+  position: absolute;
+  left: 820px;
+  top: 1440px;
+  width: 1220px;
+  height: 1340px;
+  pointer-events: none;
+}
+
+.sky-stars {
+  position: absolute;
+  inset: 0;
+}
+
+/* Stars: sparse and warm where the sky is pink, brighter and more plentiful where it turns blue */
+.sky-star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow:
+    0 0 4px 1px rgba(255, 255, 255, 0.9),
+    0 0 10px 2px var(--star-glow, rgba(170, 215, 255, 0.75));
+  opacity: var(--o);
+  animation: sky-twinkle var(--t) ease-in-out var(--d) infinite;
+}
+
+.sky-star-warm {
+  background-color: #fff4d6;
+  --star-glow: rgba(255, 186, 110, 0.8);
+}
+
+/* Bigger stars get a soft four-point flare */
+.sky-star-flare::before,
+.sky-star-flare::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--s) * 5);
+  height: 1px;
+  translate: -50% -50%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+.sky-star-flare::after {
+  rotate: 90deg;
+}
+
+.sky-star:nth-child(1) { --x: 25px; --y: 1059px; --s: 2px; --o: 0.6; --t: 4.2s; --d: -0.6s; }
+.sky-star:nth-child(2) { --x: 87px; --y: 269px; --s: 2px; --o: 0.52; --t: 3.9s; --d: -2.8s; }
+.sky-star:nth-child(3) { --x: 88px; --y: 680px; --s: 2px; --o: 0.58; --t: 3.7s; --d: -1.2s; }
+.sky-star:nth-child(4) { --x: 127px; --y: 1082px; --s: 3px; --o: 0.65; --t: 2.7s; --d: -0.1s; }
+.sky-star:nth-child(5) { --x: 131px; --y: 1170px; --s: 3px; --o: 0.66; --t: 4.8s; --d: -0.8s; }
+.sky-star:nth-child(6) { --x: 142px; --y: 763px; --s: 2px; --o: 0.61; --t: 4.0s; --d: -0.3s; }
+.sky-star:nth-child(7) { --x: 301px; --y: 162px; --s: 2px; --o: 0.59; --t: 3.1s; --d: -4.7s; }
+.sky-star:nth-child(8) { --x: 331px; --y: 614px; --s: 3px; --o: 0.66; --t: 4.9s; --d: -0.5s; }
+.sky-star:nth-child(9) { --x: 337px; --y: 42px; --s: 2px; --o: 0.59; --t: 2.8s; --d: -4.3s; }
+.sky-star:nth-child(10) { --x: 360px; --y: 1294px; --s: 3px; --o: 0.77; --t: 3.0s; --d: -1.7s; }
+.sky-star:nth-child(11) { --x: 379px; --y: 758px; --s: 2px; --o: 0.7; --t: 3.9s; --d: -4.9s; }
+.sky-star:nth-child(12) { --x: 385px; --y: 484px; --s: 2px; --o: 0.67; --t: 2.8s; --d: -1.4s; }
+.sky-star:nth-child(13) { --x: 429px; --y: 1243px; --s: 3px; --o: 0.79; --t: 2.9s; --d: -0.3s; }
+.sky-star:nth-child(14) { --x: 429px; --y: 44px; --s: 2px; --o: 0.62; --t: 2.6s; --d: -2.5s; }
+.sky-star:nth-child(15) { --x: 529px; --y: 690px; --s: 2px; --o: 0.75; --t: 3.5s; --d: -0.5s; }
+.sky-star:nth-child(16) { --x: 592px; --y: 786px; --s: 2px; --o: 0.79; --t: 3.0s; --d: -2.7s; }
+.sky-star:nth-child(17) { --x: 641px; --y: 989px; --s: 5px; --o: 0.83; --t: 2.8s; --d: -1.3s; }
+.sky-star:nth-child(18) { --x: 727px; --y: 920px; --s: 2px; --o: 0.86; --t: 3.0s; --d: -2.2s; }
+.sky-star:nth-child(19) { --x: 762px; --y: 710px; --s: 3px; --o: 0.85; --t: 3.9s; --d: -0.9s; }
+.sky-star:nth-child(20) { --x: 779px; --y: 1105px; --s: 3px; --o: 0.9; --t: 4.6s; --d: -3.8s; }
+.sky-star:nth-child(21) { --x: 779px; --y: 131px; --s: 4px; --o: 0.77; --t: 3.5s; --d: -0.5s; }
+.sky-star:nth-child(22) { --x: 854px; --y: 1302px; --s: 3px; --o: 0.96; --t: 5.1s; --d: -0.8s; }
+.sky-star:nth-child(23) { --x: 854px; --y: 847px; --s: 3px; --o: 0.9; --t: 5.2s; --d: -4.2s; }
+.sky-star:nth-child(24) { --x: 886px; --y: 1076px; --s: 3px; --o: 0.94; --t: 4.6s; --d: -2.8s; }
+.sky-star:nth-child(25) { --x: 905px; --y: 982px; --s: 4px; --o: 0.94; --t: 3.0s; --d: -0.1s; }
+.sky-star:nth-child(26) { --x: 917px; --y: 1206px; --s: 3px; --o: 0.97; --t: 5.1s; --d: -3.0s; }
+.sky-star:nth-child(27) { --x: 925px; --y: 1311px; --s: 3px; --o: 0.99; --t: 5.1s; --d: -4.7s; }
+.sky-star:nth-child(28) { --x: 927px; --y: 188px; --s: 3px; --o: 0.84; --t: 5.0s; --d: -2.5s; }
+.sky-star:nth-child(29) { --x: 973px; --y: 680px; --s: 3px; --o: 0.92; --t: 4.9s; --d: -4.7s; }
+.sky-star:nth-child(30) { --x: 986px; --y: 462px; --s: 3px; --o: 0.9; --t: 4.1s; --d: -2.3s; }
+.sky-star:nth-child(31) { --x: 1006px; --y: 746px; --s: 4px; --o: 0.95; --t: 4.0s; --d: -1.2s; }
+.sky-star:nth-child(32) { --x: 1011px; --y: 1248px; --s: 4px; --o: 1; --t: 2.8s; --d: -3.7s; }
+.sky-star:nth-child(33) { --x: 1011px; --y: 198px; --s: 3px; --o: 0.87; --t: 3.4s; --d: -3.4s; }
+.sky-star:nth-child(34) { --x: 1138px; --y: 840px; --s: 2px; --o: 1; --t: 4.1s; --d: -2.0s; }
+.sky-star:nth-child(35) { --x: 1142px; --y: 707px; --s: 3px; --o: 0.99; --t: 5.0s; --d: -3.8s; }
+.sky-star:nth-child(36) { --x: 1147px; --y: 494px; --s: 2px; --o: 0.97; --t: 3.8s; --d: -1.7s; }
+.sky-star:nth-child(37) { --x: 1162px; --y: 604px; --s: 2px; --o: 0.99; --t: 5.0s; --d: -4.7s; }
+.sky-star:nth-child(38) { --x: 1165px; --y: 420px; --s: 2px; --o: 0.96; --t: 3.5s; --d: -4.2s; }
+.sky-star:nth-child(39) { --x: 1172px; --y: 81px; --s: 3px; --o: 0.92; --t: 3.7s; --d: -2.7s; }
+.sky-star:nth-child(40) { --x: 1188px; --y: 1047px; --s: 2px; --o: 1; --t: 4.4s; --d: -4.8s; }
+
+@keyframes sky-twinkle {
+  0%,
+  100% {
+    opacity: calc(var(--o) * 0.25);
+  }
+
+  50% {
+    opacity: var(--o);
+  }
+}
+
+/* Crescent moon: a pale gold crescent with a soft glow and a twinkle at its tip */
+.sky-moon {
+  position: absolute;
+  left: 960px;
+  top: 30px;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  box-shadow: inset -20px 10px 0 0 #ffeec2;
+  rotate: -20deg;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 240, 200, 0.95))
+    drop-shadow(0 0 24px rgba(255, 206, 130, 0.75));
+  animation: moon-glow 7s ease-in-out infinite alternate;
+}
+
+.sky-moon::after {
+  content: "✦";
+  position: absolute;
+  right: -14px;
+  top: 6px;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: #fff6dc;
+  rotate: 20deg;
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+@keyframes moon-glow {
+  from {
+    opacity: 0.85;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Shooting star: streaks down-left for about a second, once every 17 seconds */
+.shooting-star {
+  position: absolute;
+  left: 1150px;
+  top: 60px;
+  width: 150px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 15%, rgba(190, 220, 255, 0) 100%);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+  transform-origin: 0 50%;
+  opacity: 0;
+  animation: shooting-star 17s linear 4s infinite;
+}
+
+/* Invisible at both ends, so the long wait between streaks hides each restart */
+@keyframes shooting-star {
+  0% {
+    transform: translate(0, 0) rotate(-25deg);
+    opacity: 0;
+    animation-timing-function: ease-out;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  6%,
+  100% {
+    transform: translate(-560px, 260px) rotate(-25deg);
+    opacity: 0;
+  }
+}
+
+/* Glowing orbs drifting very slowly */
+.sky-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(255, 255, 255, 0.95) 0 14%,
+    rgba(186, 230, 255, 0.85) 32%,
+    rgba(96, 174, 236, 0.4) 58%,
+    rgba(96, 174, 236, 0) 100%
+  );
+  animation: orb-drift var(--t) ease-in-out var(--d) infinite;
+}
+
+.sky-orb-1 {
+  left: 330px;
+  top: 420px;
+  width: 46px;
+  height: 46px;
+  --t: 26s;
+  --d: -4s;
+  /* Warm orb where the sky is still pink */
+  background: radial-gradient(
+    circle closest-side,
+    rgba(255, 255, 240, 0.95) 0 14%,
+    rgba(255, 216, 160, 0.85) 32%,
+    rgba(255, 170, 110, 0.4) 58%,
+    rgba(255, 170, 110, 0) 100%
+  );
+}
+
+.sky-orb-2 { left: 880px; top: 650px; width: 70px; height: 70px; --t: 30s; --d: -11s; }
+.sky-orb-3 { left: 1080px; top: 920px; width: 50px; height: 50px; --t: 24s; --d: -17s; }
+.sky-orb-4 { left: 700px; top: 1160px; width: 80px; height: 80px; --t: 34s; --d: -6s; }
+.sky-orb-5 { left: 1150px; top: 430px; width: 44px; height: 44px; --t: 28s; --d: -21s; }
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.85;
+  }
+
+  25% {
+    transform: translate(20px, -14px);
+  }
+
+  50% {
+    transform: translate(8px, -28px);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(-16px, -12px);
+  }
+}
+
+/* Retro sign: tiny pixel lettering that twinkles softly */
+.wish-sign {
+  position: absolute;
+  left: 556px;
+  top: 176px;
+  margin: 0;
+  font-family: "VT323", "Courier New", Courier, monospace;
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  color: #fff6dc;
+  text-shadow:
+    0 0 2px rgba(60, 20, 50, 1),
+    0 0 4px rgba(60, 20, 50, 0.6),
+    0 0 12px rgba(255, 190, 110, 0.9);
+  animation: sign-twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes sign-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* Constellation secret: eight stars that light up and connect, one by one,
+   into a heart as the pointer passes over them in order.
+   Each lit state "sticks" because changes back are delayed for 999999s.
+   Each star only becomes touchable once the one before it is lit, so the wish
+   appears only when the whole heart is complete. Keyboard focus works too. */
+.constellation {
+  position: absolute;
+  left: 520px;
+  top: 220px;
+  width: 220px;
+  height: 200px;
+}
+
+.c-hit-1, .c-star-1 { left: 110px; top: 52px; }
+.c-hit-2, .c-star-2 { left: 62px; top: 16px; }
+.c-hit-3, .c-star-3 { left: 16px; top: 58px; }
+.c-hit-4, .c-star-4 { left: 46px; top: 118px; }
+.c-hit-5, .c-star-5 { left: 110px; top: 182px; }
+.c-hit-6, .c-star-6 { left: 174px; top: 118px; }
+.c-hit-7, .c-star-7 { left: 204px; top: 58px; }
+.c-hit-8, .c-star-8 { left: 158px; top: 16px; }
+
+.c-hit {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  outline: none;
+  pointer-events: auto;
+}
+
+.c-hit:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 236, 190, 0.7);
+}
+
+/* Later stars wait until the previous one is lit */
+.c-hit-2,
+.c-hit-3,
+.c-hit-4,
+.c-hit-5,
+.c-hit-6,
+.c-hit-7,
+.c-hit-8 {
+  visibility: hidden;
+  transition: visibility 0s 999999s;
+}
+
+.c-hit-1:is(:hover, :focus) ~ .c-hit-2,
+.c-hit-2:is(:hover, :focus) ~ .c-hit-3,
+.c-hit-3:is(:hover, :focus) ~ .c-hit-4,
+.c-hit-4:is(:hover, :focus) ~ .c-hit-5,
+.c-hit-5:is(:hover, :focus) ~ .c-hit-6,
+.c-hit-6:is(:hover, :focus) ~ .c-hit-7,
+.c-hit-7:is(:hover, :focus) ~ .c-hit-8 {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Before discovery: ordinary dim stars, the first a little brighter as an invitation */
+.c-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow:
+    0 0 4px 1px rgba(255, 255, 255, 0.85),
+    0 0 10px 2px rgba(170, 215, 255, 0.6);
+  opacity: 0.75;
+  pointer-events: none;
+  transition-property: opacity, box-shadow, background-color, scale;
+  transition-duration: 0.6s;
+  transition-timing-function: ease;
+  transition-delay: 999999s;
+}
+
+.c-star-1 {
+  opacity: 0.95;
+  scale: 1.35;
+}
+
+/* The next star in the heart grows slightly, hinting where to go */
+.c-hit-1:is(:hover, :focus) ~ .c-star-2,
+.c-hit-2:is(:hover, :focus) ~ .c-star-3,
+.c-hit-3:is(:hover, :focus) ~ .c-star-4,
+.c-hit-4:is(:hover, :focus) ~ .c-star-5,
+.c-hit-5:is(:hover, :focus) ~ .c-star-6,
+.c-hit-6:is(:hover, :focus) ~ .c-star-7,
+.c-hit-7:is(:hover, :focus) ~ .c-star-8 {
+  scale: 1.7;
+  transition-delay: 999999s, 999999s, 999999s, 0s;
+}
+
+/* Lit: a rosy glow */
+.c-hit-1:is(:hover, :focus) ~ .c-star-1,
+.c-hit-2:is(:hover, :focus) ~ .c-star-2,
+.c-hit-3:is(:hover, :focus) ~ .c-star-3,
+.c-hit-4:is(:hover, :focus) ~ .c-star-4,
+.c-hit-5:is(:hover, :focus) ~ .c-star-5,
+.c-hit-6:is(:hover, :focus) ~ .c-star-6,
+.c-hit-7:is(:hover, :focus) ~ .c-star-7,
+.c-hit-8:is(:hover, :focus) ~ .c-star-8 {
+  opacity: 1;
+  scale: 1.7;
+  background-color: #fff3f6;
+  box-shadow:
+    0 0 6px 2px rgba(255, 255, 255, 0.95),
+    0 0 16px 4px rgba(255, 170, 200, 0.8);
+  transition-delay: 0s;
+}
+
+/* Glowing lines draw from each lit star to the next */
+.c-line {
+  position: absolute;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(255, 214, 230, 0.95), rgba(255, 240, 210, 0.95));
+  box-shadow:
+    0 0 6px rgba(255, 190, 215, 0.9),
+    0 0 12px rgba(255, 170, 200, 0.5);
+  scale: 0 1;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    scale 0.7s ease 999999s,
+    opacity 0.7s ease 999999s;
+}
+
+.c-line-1 { left: 110px; top: 52px; width: 60px; rotate: -143.1deg; }
+.c-line-2 { left: 62px; top: 16px; width: 62px; rotate: 137.6deg; }
+.c-line-3 { left: 16px; top: 58px; width: 67px; rotate: 63.4deg; }
+.c-line-4 { left: 46px; top: 118px; width: 91px; rotate: 45.0deg; }
+.c-line-5 { left: 110px; top: 182px; width: 91px; rotate: -45.0deg; }
+.c-line-6 { left: 174px; top: 118px; width: 67px; rotate: -63.4deg; }
+.c-line-7 { left: 204px; top: 58px; width: 62px; rotate: -137.6deg; }
+.c-line-8 { left: 158px; top: 16px; width: 60px; rotate: 143.1deg; }
+
+.c-hit-2:is(:hover, :focus) ~ .c-line-1,
+.c-hit-3:is(:hover, :focus) ~ .c-line-2,
+.c-hit-4:is(:hover, :focus) ~ .c-line-3,
+.c-hit-5:is(:hover, :focus) ~ .c-line-4,
+.c-hit-6:is(:hover, :focus) ~ .c-line-5,
+.c-hit-7:is(:hover, :focus) ~ .c-line-6,
+.c-hit-8:is(:hover, :focus) ~ .c-line-7,
+.c-hit-8:is(:hover, :focus) ~ .c-line-8 {
+  scale: 1 1;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+/* The last line closes the heart a moment after the final star */
+.c-hit-8:is(:hover, :focus) ~ .c-line-8 {
+  transition-delay: 0.5s;
+}
+
+/* The wish: handwritten and glowing, blooming in once the heart is complete */
+.c-wish {
+  position: absolute;
+  left: -60px;
+  top: 222px;
+  width: 340px;
+  margin: 0;
+  font-family: "Caveat", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff8ec;
+  text-align: center;
+  text-shadow:
+    0 0 0 transparent,
+    0 0 0 transparent,
+    0 0 0 transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 1s ease 999999s,
+    text-shadow 1.4s ease 999999s;
+}
+
+.c-hit-8:is(:hover, :focus) ~ .c-wish {
+  opacity: 1;
+  text-shadow:
+    0 0 2px rgba(120, 40, 80, 0.8),
+    0 0 10px rgba(255, 180, 210, 0.95),
+    0 0 22px rgba(255, 200, 140, 0.6);
+  transition-delay: 0.9s;
+}
+
+/* Reduced motion: a still, finished-looking sky.
+   The constellation keeps working: its lighting up is a fade, not motion */
+@media (prefers-reduced-motion: reduce) {
+  .sky-star,
+  .sky-moon,
+  .sky-moon::after,
+  .sky-orb,
+  .wish-sign,
+  .scatter-sparkle-photo::after {
+    animation: none;
+  }
+
+  .shooting-star {
+    display: none;
+  }
+}
