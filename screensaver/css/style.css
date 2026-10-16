@@ -1,0 +1,171 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #ffe4ec;
+}
+
+.screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.cat {
+    position: relative;
+    z-index: 2;
+    width: 250px;
+    height: 250px;
+    animation: float 3s ease-in-out infinite alternate;
+}
+
+.cat img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.5s ease;
+}
+
+.sleeping {
+    opacity: 1;
+    transform: scale(0.8);
+}
+
+.awake {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.cat:hover .sleeping {
+    opacity: 0;
+}
+
+.cat:hover .awake {
+    opacity: 1;
+}
+
+/* Text under the cat */
+
+.cat-text {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    color: #b86b85;
+}
+
+.cat-text p {
+    margin: 0;
+    transition: opacity 0.5s ease;
+}
+
+.shhh {
+    opacity: 1;
+}
+
+.up {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+}
+
+.cat:hover .shhh {
+    opacity: 0;
+}
+
+.cat:hover .up {
+    opacity: 1;
+}
+
+/* Floating cat animation */
+
+@keyframes float {
+    from {
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* Meow texts */
+
+.meows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.meows span {
+    position: absolute;
+    opacity: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #d47799;
+}
+
+/* Positions around the screen */
+
+.meows span:nth-child(1)  { top: 10%; left: 12%; }
+.meows span:nth-child(2)  { top: 20%; left: 35%; }
+.meows span:nth-child(3)  { top: 12%; left: 70%; }
+.meows span:nth-child(4)  { top: 30%; left: 85%; }
+.meows span:nth-child(5)  { top: 40%; left: 10%; }
+.meows span:nth-child(6)  { top: 55%; left: 25%; }
+.meows span:nth-child(7)  { top: 65%; left: 80%; }
+.meows span:nth-child(8)  { top: 75%; left: 15%; }
+.meows span:nth-child(9)  { top: 85%; left: 45%; }
+.meows span:nth-child(10) { top: 90%; left: 90%; }
+.meows span:nth-child(11) { top: 8%; left: 50%; }
+.meows span:nth-child(12) { top: 48%; left: 90%; }
+.meows span:nth-child(13) { top: 78%; left: 65%; }
+.meows span:nth-child(14) { top: 35%; left: 50%; }
+.meows span:nth-child(15) { top: 60%; left: 5%; }
+.meows span:nth-child(16) { top: 15%; left: 92%; }
+
+/* Trigger meows when hovering over cat */
+
+.screen:has(.cat:hover) .meows span {
+    animation: meow-pop 2s ease-in-out infinite;
+}
+
+/* Different timings for each meow */
+
+.meows span:nth-child(2n) {
+    animation-delay: -0.5s !important;
+}
+
+.meows span:nth-child(3n) {
+    animation-delay: -1s !important;
+}
+
+.meows span:nth-child(5n) {
+    animation-delay: -1.5s !important;
+}
+
+/* Popping animation */
+
+@keyframes meow-pop {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
