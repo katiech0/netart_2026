@@ -1,0 +1,488 @@
+/* GENERAL PAGE SETTINGS */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 40px 20px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    color: #222;
+    text-align: center;
+
+    /* New Lemon8 background */
+    background-image: url("https://www.lemon8-app.com/seo/image?item_id=7572119634867012126&index=0&sign=1778c9a6891c05e693478cac342386da");
+
+    background-size: cover;
+    background-position: right center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+}
+
+/* SEMI-TRANSPARENT WHITE BOXES */
+
+.text-box {
+    position: relative;
+    z-index: 2;
+
+    background-color: rgba(255, 255, 255, 0.82);
+
+    padding: 35px;
+    margin: 30px auto;
+
+    border-radius: 15px;
+    max-width: 850px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* EXHIBITION HEADER */
+
+header {
+    padding: 50px 30px;
+}
+
+/* WHIMSICAL PASTEL FLOATING TITLE */
+
+header h1 {
+    font-family: 'Delius Swash Caps', cursive;
+    font-size: 65px;
+    font-weight: normal;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #F4A7C5,
+        #B7A0E8,
+        #91C9F7,
+        #93D9BC,
+        #F3D98B
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    animation: titleFloat 4s ease-in-out infinite;
+}
+
+/* TITLE HOVERING ANIMATION */
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* SUBTITLE AND CURATOR */
+
+header h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+header p {
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 25px;
+}
+
+/* CURATORIAL STATEMENT */
+
+.introduction h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.introduction p {
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+/* ARTWORK SECTIONS */
+
+.artwork {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.artwork h2 {
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.artist {
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* CLICKABLE ARTWORK SCREENSHOTS */
+
+.artwork img {
+    display: block;
+
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+
+    margin: 25px auto;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* SCREENSHOT HOVER EFFECT */
+
+.artwork img:hover {
+    transform: scale(1.03);
+
+    box-shadow: 0 8px 25px
+                rgba(0, 0, 0, 0.2);
+}
+
+/* ARTWORK DESCRIPTIONS */
+
+.artwork p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* ARTWORK LINKS */
+
+.visit-link {
+    display: inline-block;
+
+    margin-top: 15px;
+    padding: 12px 25px;
+
+    background-color: rgba(255, 255, 255, 0.65);
+
+    color: #222;
+    text-decoration: none;
+
+    border: 1px solid #777;
+    border-radius: 25px;
+
+    transition: background-color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.visit-link:hover {
+    background-color: white;
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer p {
+    font-size: 15px;
+    font-style: italic;
+}
+
+/* FLOATING PASTEL SPARKLES */
+
+.sparkle-layer {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    /* Sparkles appear over the page */
+    z-index: 5;
+}
+
+.sparkle {
+    position: absolute;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+
+    opacity: 0.5;
+
+    animation: floatSparkle 10s ease-in-out infinite;
+}
+
+/* PASTEL SPARKLE COLORS */
+
+/* Pink */
+.sparkle:nth-child(5n + 1) {
+    color: #F4A7C5;
+    text-shadow: 0 0 8px rgba(244, 167, 197, 0.5);
+}
+
+/* Lavender */
+.sparkle:nth-child(5n + 2) {
+    color: #B7A0E8;
+    text-shadow: 0 0 8px rgba(183, 160, 232, 0.5);
+}
+
+/* Baby blue */
+.sparkle:nth-child(5n + 3) {
+    color: #91C9F7;
+    text-shadow: 0 0 8px rgba(145, 201, 247, 0.5);
+}
+
+/* Mint green */
+.sparkle:nth-child(5n + 4) {
+    color: #93D9BC;
+    text-shadow: 0 0 8px rgba(147, 217, 188, 0.5);
+}
+
+/* Pale yellow */
+.sparkle:nth-child(5n + 5) {
+    color: #F3D98B;
+    text-shadow: 0 0 8px rgba(243, 217, 139, 0.5);
+}
+
+/* SPARKLE POSITIONS */
+
+.sparkle:nth-child(1) {
+    top: 5%;
+    left: 8%;
+    font-size: 26px;
+    animation-duration: 9s;
+}
+
+.sparkle:nth-child(2) {
+    top: 12%;
+    left: 82%;
+    font-size: 32px;
+    animation-duration: 12s;
+    animation-delay: -3s;
+}
+
+.sparkle:nth-child(3) {
+    top: 24%;
+    left: 22%;
+    font-size: 20px;
+    animation-duration: 11s;
+}
+
+.sparkle:nth-child(4) {
+    top: 32%;
+    left: 70%;
+    font-size: 29px;
+    animation-duration: 14s;
+    animation-delay: -5s;
+}
+
+.sparkle:nth-child(5) {
+    top: 45%;
+    left: 10%;
+    font-size: 34px;
+    animation-duration: 10s;
+}
+
+.sparkle:nth-child(6) {
+    top: 52%;
+    left: 88%;
+    font-size: 23px;
+    animation-duration: 13s;
+    animation-delay: -4s;
+}
+
+.sparkle:nth-child(7) {
+    top: 68%;
+    left: 20%;
+    font-size: 30px;
+    animation-duration: 15s;
+}
+
+.sparkle:nth-child(8) {
+    top: 80%;
+    left: 75%;
+    font-size: 26px;
+    animation-duration: 12s;
+    animation-delay: -2s;
+}
+
+.sparkle:nth-child(9) {
+    top: 90%;
+    left: 12%;
+    font-size: 22px;
+    animation-duration: 11s;
+}
+
+.sparkle:nth-child(10) {
+    top: 16%;
+    left: 53%;
+    font-size: 35px;
+    animation-duration: 14s;
+    animation-delay: -6s;
+}
+
+.sparkle:nth-child(11) {
+    top: 36%;
+    left: 90%;
+    font-size: 24px;
+    animation-duration: 10s;
+}
+
+.sparkle:nth-child(12) {
+    top: 73%;
+    left: 49%;
+    font-size: 31px;
+    animation-duration: 13s;
+    animation-delay: -3s;
+}
+
+.sparkle:nth-child(13) {
+    top: 6%;
+    left: 40%;
+    font-size: 18px;
+    animation-duration: 12s;
+}
+
+.sparkle:nth-child(14) {
+    top: 58%;
+    left: 34%;
+    font-size: 28px;
+    animation-duration: 16s;
+    animation-delay: -5s;
+}
+
+.sparkle:nth-child(15) {
+    top: 86%;
+    left: 90%;
+    font-size: 25px;
+    animation-duration: 11s;
+}
+
+.sparkle:nth-child(16) {
+    top: 28%;
+    left: 45%;
+    font-size: 20px;
+    animation-duration: 13s;
+    animation-delay: -4s;
+}
+
+.sparkle:nth-child(17) {
+    top: 64%;
+    left: 78%;
+    font-size: 27px;
+    animation-duration: 15s;
+}
+
+.sparkle:nth-child(18) {
+    top: 95%;
+    left: 55%;
+    font-size: 22px;
+    animation-duration: 10s;
+    animation-delay: -6s;
+}
+
+.sparkle:nth-child(19) {
+    top: 42%;
+    left: 57%;
+    font-size: 30px;
+    animation-duration: 14s;
+}
+
+.sparkle:nth-child(20) {
+    top: 78%;
+    left: 5%;
+    font-size: 24px;
+    animation-duration: 12s;
+    animation-delay: -2s;
+}
+
+/* FLOATING AND TWINKLING ANIMATION */
+
+@keyframes floatSparkle {
+
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.15;
+    }
+
+    25% {
+        transform: translate(12px, -18px) rotate(45deg);
+        opacity: 0.45;
+    }
+
+    50% {
+        transform: translate(-10px, -35px) rotate(90deg);
+        opacity: 0.25;
+    }
+
+    75% {
+        transform: translate(15px, -15px) rotate(135deg);
+        opacity: 0.55;
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(180deg);
+        opacity: 0.15;
+    }
+}
+
+/* MOBILE SCREEN ADJUSTMENTS */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+        background-attachment: scroll;
+    }
+
+    .text-box {
+        padding: 22px;
+    }
+
+    header h1 {
+        font-size: 43px;
+    }
+
+    header h2 {
+        font-size: 19px;
+    }
+
+    .artwork h2 {
+        font-size: 24px;
+    }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    header h1,
+    .sparkle {
+        animation: none;
+    }
+
+    .sparkle {
+        opacity: 0.3;
+    }
+
+    .artwork img,
+    .visit-link {
+        transition: none;
+    }
+}
