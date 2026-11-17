@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Winter Day in Clicks</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body data-time="night">
+  <!-- Three sky layers fade over one another instead of switching abruptly. -->
+  <div class="sky night-bg" aria-hidden="true"></div>
+  <div class="sky twilight-bg" aria-hidden="true"></div>
+  <div class="sky day-bg" aria-hidden="true"></div>
+
+  <div id="stars" class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true">☾</div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+  </div>
+  <div id="leaves" class="leaves" aria-hidden="true"></div>
+
+  <main class="clock-card" role="button" tabindex="0" aria-label="Advance the clock by one hour">
+    <p class="eyebrow">A DAY IN CLICKS</p>
+    <div id="clock" class="clock" aria-live="polite">12:00 AM</div>
+    <p id="time-label" class="time-label">Nighttime</p>
+    <p class="instructions">Click anywhere to move forward one hour</p>
+  </main>
+</body>
+</html>
