@@ -1,0 +1,166 @@
+/* Basic page layout */
+* { box-sizing: border-box; }
+
+html, body { margin: 0; width: 100%; min-height: 100%; }
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Gradients live in separate layers, so opacity can fade smoothly. */
+.sky { position: fixed; inset: 0; z-index: -5; opacity: 0; transition: opacity 2s ease-in-out; }
+.night-bg { background: linear-gradient(150deg, #07172f 0%, #222151 53%, #55377c 100%); }
+.twilight-bg { background: linear-gradient(180deg, #659bd2 0%, #a2b9e7 34%, #efa5b6 65%, #ffb16e 100%); }
+.day-bg { background: linear-gradient(155deg, #82caff 0%, #bbeaff 52%, #fff2b7 100%); }
+
+body[data-time="night"] .night-bg,
+body[data-time="sunrise"] .twilight-bg,
+body[data-time="sunset"] .twilight-bg,
+body[data-time="day"] .day-bg { opacity: 1; }
+
+/* Stars twinkle in the night sky. JavaScript creates their positions. */
+.stars, .leaves, .clouds { position: fixed; inset: 0; pointer-events: none; transition: opacity 1.5s ease; }
+.stars { z-index: -3; opacity: 0; }
+body[data-time="night"] .stars { opacity: 1; }
+
+.star {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 2px rgba(255,255,255,.5);
+  animation: twinkle var(--speed) ease-in-out infinite alternate;
+}
+.sparkle {
+  position: absolute;
+  color: #ffeffd;
+  font-size: var(--size);
+  text-shadow: 0 0 12px rgba(255,255,255,.85);
+  animation: twinkle var(--speed) ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: .25; transform: scale(.65); } to { opacity: 1; transform: scale(1.2); } }
+
+/* Moon and sun float at different times of day. */
+.moon {
+  position: fixed;
+  top: 8%;
+  left: 9%;
+  z-index: -2;
+  font-family: Georgia, serif;
+  font-size: clamp(76px, 9vw, 126px);
+  color: #fff1ce;
+  line-height: 1;
+  filter: drop-shadow(0 0 18px rgba(255,232,178,.5));
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  animation: float 5s ease-in-out infinite;
+  pointer-events: none;
+}
+body[data-time="night"] .moon { opacity: 1; }
+
+.sun {
+  position: fixed;
+  z-index: -2;
+  right: 11%;
+  top: 72%;
+  width: clamp(90px, 12vw, 160px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff8d6 0%, #ffe19a 35%, #ffad73 100%);
+  box-shadow: 0 0 55px 18px rgba(255,220,149,.6), 0 0 110px 35px rgba(255,214,149,.2);
+  opacity: 0;
+  transition: top 2s ease-in-out, opacity 1.6s ease;
+  animation: float 5s ease-in-out infinite;
+  pointer-events: none;
+}
+body[data-time="sunrise"] .sun,
+body[data-time="sunset"] .sun,
+body[data-time="day"] .sun { opacity: 1; }
+body[data-time="day"] .sun { top: 10%; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+/* Subtle daytime clouds */
+.clouds { z-index: -3; opacity: 0; }
+body[data-time="day"] .clouds { opacity: 1; }
+.cloud {
+  position: absolute;
+  width: 135px;
+  height: 35px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.55);
+  filter: blur(3px);
+  animation: drift 16s ease-in-out infinite alternate;
+}
+.cloud::before, .cloud::after { content: ""; position: absolute; border-radius: 50%; background: inherit; }
+.cloud::before { width: 65px; height: 65px; bottom: 0; left: 22px; }
+.cloud::after { width: 75px; height: 75px; bottom: 0; right: 18px; }
+.cloud-one { top: 20%; left: 16%; }
+.cloud-two { top: 34%; left: 60%; transform: scale(.7); animation-delay: -6s; }
+.cloud-three { top: 69%; left: 6%; transform: scale(.55); animation-delay: -10s; }
+@keyframes drift { from { margin-left: -16px; } to { margin-left: 26px; } }
+
+/* Little leaves float downward when it is daytime. */
+.leaves { z-index: -1; opacity: 0; }
+body[data-time="day"] .leaves { opacity: 1; }
+.leaf {
+  position: absolute;
+  top: -12vh;
+  width: 13px;
+  height: 22px;
+  border-radius: 90% 0 90% 0;
+  background: var(--leaf-color);
+  box-shadow: 0 1px 4px rgba(96,78,35,.12);
+  animation: leaf-fall var(--duration) linear infinite;
+}
+@keyframes leaf-fall {
+  0%   { transform: translate(0, -5vh) rotate(0deg); }
+  50%  { transform: translate(calc(var(--drift) / 2), 55vh) rotate(200deg); }
+  100% { transform: translate(var(--drift), 125vh) rotate(420deg); }
+}
+
+/* Clock stays centered throughout every transformation. */
+.clock-card {
+  z-index: 2;
+  text-align: center;
+  width: min(740px, 90vw);
+  padding: clamp(28px, 5vw, 58px) 20px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 28px;
+  background: rgba(21,32,68,.28);
+  box-shadow: 0 18px 65px rgba(11,26,58,.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  outline-offset: 8px;
+}
+.eyebrow { margin: 0 0 18px; font-size: 12px; font-weight: 700; letter-spacing: .35em; }
+.clock {
+  font-size: clamp(48px, 9vw, 104px);
+  font-weight: 700;
+  letter-spacing: -.055em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 3px 25px rgba(12,28,58,.25);
+  white-space: nowrap;
+}
+.time-label { margin: 10px 0 30px; font-size: clamp(18px, 2.4vw, 25px); letter-spacing: .08em; }
+.instructions { margin: 0; font-size: 13px; letter-spacing: .04em; opacity: .87; }
+
+@media (max-width: 520px) {
+  .clock { font-size: clamp(40px, 10.5vw, 62px); }
+  .clock-card { padding: 32px 12px; }
+  .moon { left: 6%; }
+  .sun { right: 7%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star, .sparkle, .leaf, .moon, .sun, .cloud { animation: none; }
+}
